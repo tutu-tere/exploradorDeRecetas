@@ -7,6 +7,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Detalle Recetas</title>
+    <link rel="stylesheet" href="/css/style.css">
   </head>
   <body>
     <h1>Detalle de la Receta</h1>
@@ -14,11 +15,16 @@ uri="http://java.sun.com/jsp/jstl/core" %>
     <c:choose>
         <c:when test="${not empty nombreReceta}">
             <h2>${nombreReceta}</h2>
-            <ul>
-                <c:forEach var="ingrediente" items="${ingredientes}">
+            
+            <div class="container">
+              <div class="cajita">
+                <ul>
+                  <c:forEach var="ingrediente" items="${ingredientes}">
                     <li>${ingrediente}</li>
-                </c:forEach>
-            </ul>
+                  </c:forEach>
+                </ul>
+              </div>
+            </div>
         </c:when>
         <c:otherwise>
             <p style="color:red;">${mensaje}</p>

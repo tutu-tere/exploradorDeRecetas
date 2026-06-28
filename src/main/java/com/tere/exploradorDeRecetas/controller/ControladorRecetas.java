@@ -5,6 +5,7 @@ import java.util.HashMap;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 public class ControladorRecetas {
@@ -27,4 +28,14 @@ public class ControladorRecetas {
     return "recetas.jsp";
   }
 
+  @GetMapping("/recetas/{nombre}")
+  public String obtenerRecetaPorNombre(@PathVariable String nombre, Model model) {
+    if (recetasConIngredientes.containsKey(nombre)) {
+      model.addAttribute("nomnbreReceta", nombre);
+      model.addAttribute("ingredientes", recetasConIngredientes.get(nombre));
+    } else {
+      model.addAttribute("mensaje", "La receta no se encuentra en nuestra lista.");
+    }
+    return "detalleReceta.jsp";
+  }
 }
